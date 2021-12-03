@@ -1,17 +1,17 @@
+html{
+    scroll-behavior: smooth;
+}
 body {
-    /* ice bakcground image*/
-    background-image: url(https://cdn.pixabay.com/photo/2019/02/26/14/53/ice-4022207_960_720.jpg);
-    /*fill page*/
-    background-size: 100% 100%;
     /*text color of the page*/
     color: black;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 18px;
     text-align: justify;
     text-justify: inter-word;
-    margin: 10px;
+    margin: 5px;
+    overflow-x: hidden;
 }
-ul {
+.navigation-bar {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -29,19 +29,74 @@ li a{
     text-decoration: none;
     text-transform: uppercase;
 }
-/*the page the reader is on has an over and underline*/
-li a > b{
+li a > b{/*the page the reader is on has an over and underline*/
     text-decoration: overline underline;
 }
-/*the cell the cursor is on is dark blue*/
-li a:hover {
+li a:hover {/* Change the link color to dark blue on hover */
     background-color: rgb(0, 16, 105);
 }
+body {
+    overflow-x: hidden;
+  }
+.page-wrap {/*gridlines*/
+    display: grid; /*creates the 4 grid*/
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: 50px 1fr auto;
+    gap: 1rem;
+    height: 500px;
+    }
+  .page-wrap > * { /*draws the lines around the grid*/
+      border: 1px solid #ccc; /*border with light gray color*/
+      border-radius: 8px; /*sets the angle of the corners*/
+      background: white; /*backgroud color of the inner background*/
+    }
+  body {
+    padding: 1rem;
+    /*The base backgound visible within the grid parts*/
+    background: url(https://cdn.pixabay.com/photo/2019/02/26/14/53/ice-4022207_960_720.jpg);
+    /*adjusts to the display size (deforms)*/
+    background-size: 100% 100%;
+  }
+main{ /* gives a padding so the text is not at the very end*/
+    padding-left: 16px;
+    padding-right: 16px;
+}
+header, footer { /*makes header and footer into one cell*/
+    grid-column: 1 / -1; /*grid-column-start and -end properties*/
+    height: 49px;
+  }
+  footer {
+    height: 50px;
+    padding: 14px 16px;
+  }
+aside {
+    padding: 1rem;
+    align-self: start;
+    overflow: hidden;
+  }
+  .sticky { /*black square at the side*/
+    height: 200px;
+    background: black;
+    border-radius: 5px;
+    position: sticky;
+    top: 1rem;
+    padding: 1px 16px;
+    color: white;
+  }
+  .not-sticky {
+    height: 100px;
+    background: orange;
+    border-radius: 5px;
+  }
+    .jump-links{ /*jumps to a certain place on page*/
+        color: lightcyan;
+        margin-top: 1rem;
+    }
 h1{
     color: rgb(1, 1, 65);
     font-size: 40px;
     text-decoration: overline;
-    text-transform: capitalize;
+    text-transform: uppercase;
     letter-spacing: 8px;
     text-shadow: 2px 2px 5px rgb(0, 102, 255);
     font-family: "papyrus", "copperplate", monospace;
@@ -50,26 +105,59 @@ h2{
     color: rgb(1, 1, 65);
     font-size: 30px;
     text-decoration: overline;
-    text-transform: capitalize;
+    text-transform: uppercase;
     letter-spacing: 8px;
     text-shadow: 2px 2px 5px rgb(0, 102, 255);
     font-family: "papyrus", "copperplate", monospace;
 }
-img {
-    border-style: groove;
-    border-color: cornflowerblue;
-
+h3{
+    color: rgb(1, 1, 65);
+    font-size: 20px;
+    text-decoration: overline;
+    text-transform: uppercase;
+    letter-spacing: 8px;
+    text-shadow: 2px 2px 2px rgb(0, 102, 255);
+    font-family: "papyrus", "copperplate", monospace;
 }
-/*element name styles in paragraphs*/
-.element{
+img {
+    border: 5px solid black;
+    padding: 5px;
+    animation: mymove 5s infinite;
+    behavior: smooth;
+}
+    @keyframes mymove{
+        50%{border-color:cornflowerblue};
+    }
+.column {
+    float: left;
+    width: 33.33%;
+    padding: 1rem;
+    box-sizing: border-box;      
+  }
+.row::after {/* Clearfix (clear floats) */
+    content: "";
+    clear: both;
+    display: table;
+  }
+.element{/*element name styles in paragraphs*/
     border-style: outset;
     border-color:cyan;
-    padding: 5px;
+    height: fit-content;
+    width: 270px;
+    padding: 11px;
+    text-align: center;
 }
+.element:hover{
+    animation: shadowmove 5s infinite; /*name, duration, recurrence*/
+}
+    @keyframes shadowmove {
+    50% {box-shadow: 10px 20px 30px blue;}
+  }
 .dropdown{
     position: relative;
     display: inline-block;
 }
+/*it's the same for every picture, so it will open everyone of them at the same time*/
 .dropdown-content {
   display: none;
   position: absolute;
@@ -81,3 +169,7 @@ img {
 .dropdown:hover .dropdown-content {
     display: block;
   }
+.desc {
+    padding: 15px;
+    text-align: center;
+}
